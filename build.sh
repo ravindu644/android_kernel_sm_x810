@@ -16,6 +16,13 @@ fi
 
 echo -e "[+] Toolchain installed...\n"
 
+# setup localversion
+if [ -z "$BUILD_KERNEL_VERSION" ]; then
+    export BUILD_KERNEL_VERSION="dev"
+fi
+
+echo -e "CONFIG_LOCALVERSION_AUTO=n\nCONFIG_LOCALVERSION=\"-ravindu644-${BUILD_KERNEL_VERSION}\"\n" > "${WDIR}/custom_defconfigs/version_defconfig"
+
 # target config - Based on gts9pwifi_eur_open
 export MODEL="gts9pwifi"
 export PROJECT_NAME="$MODEL"
